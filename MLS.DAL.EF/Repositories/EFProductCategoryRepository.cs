@@ -1,4 +1,6 @@
-﻿using MLS.Core.Contracts;
+﻿using Framework.DAL;
+using Microsoft.EntityFrameworkCore;
+using MLS.Core.Contracts;
 using MLS.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace MLS.DAL.EF.Repositories
 {
-    public class EFProductCategoryRepository : IProductCategoryRepository
+    public class EFProductCategoryRepository : RepositoryBase<long, ProductCategory>, IProductCategoryRepository
     {
         private static List<ProductCategory> categories = new List<ProductCategory>();
-        public void Create(ProductCategory productCategory)
+
+        public EFProductCategoryRepository(DbContext dbContext) : base(dbContext)
         {
-            categories.Add(productCategory);
         }
 
         public ProductCategory Search(string name)

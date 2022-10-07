@@ -1,15 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Framework.Core;
 
 namespace MLS.Core.Entities
 {
-    public class ProductCategory
+    public class ProductCategory : EntityBase
     {
-        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
         public List<Product>? Products { get; set; }
+
+        public ProductCategory()
+        {
+            Products = new List<Product>();
+        }
+
+        public ProductCategory(string name, string description)
+        {
+            Name = name;
+            Description = description;
+        }
     }
 }

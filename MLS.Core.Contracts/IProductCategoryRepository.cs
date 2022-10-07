@@ -1,15 +1,10 @@
-﻿using MLS.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Framework.Core;
+using MLS.Core.Entities;
 
 namespace MLS.Core.Contracts
 {
-    public interface IProductCategoryRepository
+    public interface IProductCategoryRepository : IRepository<long, ProductCategory>
     {
-        void Create(ProductCategory productCategory);
-        ProductCategory Search(string name);
+
     }
 }

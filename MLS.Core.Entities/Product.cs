@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MLS.Core.Entities
+﻿namespace MLS.Core.Entities
 {
     public class Product
     {

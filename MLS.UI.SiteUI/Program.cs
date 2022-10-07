@@ -1,12 +1,12 @@
-using MLS.Core.ApplicationServices;
-using MLS.Core.Contracts;
-using MLS.DAL.EF.Repositories;
+using MLS.DAL.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSingleton<IProductCategoryRepository, EFProductCategoryRepository>();
-builder.Services.AddSingleton<ProductCategoryService, ProductCategoryService>();
+builder.Services.AddHttpContextAccessor();
+var connectionString = builder.Configuration.GetConnectionString("MLSdb");
+MLSBootstrapper.Configure(builder.Services, connectionString);
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
