@@ -19,6 +19,7 @@ namespace MLS.Core.ApplicationServices
                 //var categoryInDb = _categoryRepository.Search(name);
                 //if(categoryInDb == null|| categoryInDb.Id<1)
                 //{
+                //
                 //    var category = new ProductCategory
                 //    {
                 //        Name = name,
