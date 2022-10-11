@@ -1,11 +1,11 @@
-using MLS.DAL.Configuration;
+using MLS.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddHttpContextAccessor();
 var connectionString = builder.Configuration.GetConnectionString("MLSdb");
-MLSBootstrapper.Configure(builder.Services, connectionString);
+MLSConfigureServices.Configure(builder.Services, connectionString);
 
 builder.Services.AddControllersWithViews();
 

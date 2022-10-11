@@ -3,11 +3,11 @@ using MLS.Core.Entities;
 
 namespace MLS.Core.ApplicationServices
 {
-    public class ProductCategoryService
+    public class TaskCategoryService
     {
-        private readonly IProductCategoryRepository _categoryRepository;
+        private readonly ITaskCategoryRepository _categoryRepository;
 
-        public ProductCategoryService(IProductCategoryRepository categoryRepository)
+        public TaskCategoryService(ITaskCategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }

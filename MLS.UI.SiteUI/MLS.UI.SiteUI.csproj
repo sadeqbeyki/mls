@@ -11,9 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MLS.Core.ApplicationServices\MLS.Core.ApplicationServices.csproj" />
-    <ProjectReference Include="..\MLS.DAL.Configuration\MLS.DAL.Configuration.csproj" />
-    <ProjectReference Include="..\MLS.DAL.EF\MLS.DAL.EF.csproj" />
+    <ProjectReference Include="..\MLS.Infrastructure\MLS.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

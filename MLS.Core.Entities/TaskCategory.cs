@@ -2,18 +2,18 @@
 
 namespace MLS.Core.Entities
 {
-    public class ProductCategory : EntityBase
+    public class TaskCategory : EntityBase
     {
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public List<Product>? Products { get; set; }
+        public List<Task>? Tasks { get; set; }
 
-        public ProductCategory()
+        public TaskCategory()
         {
-            Products = new List<Product>();
+            Tasks = new List<Task>();
         }
 
-        public ProductCategory(string name, string description)
+        public TaskCategory(string name, string description)
         {
             Name = name;
             Description = description;

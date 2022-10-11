@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MLS.Core.Entities;
-using MLS.DAL.EF.Mapping;
+using MLS.Domain.Entities;
+using MLS.Infrastructure.Configurations;
 
-namespace MLS.DAL.EF
+namespace MLS.Infrastructure
 {
     public class MLSContext : DbContext
     {
-        public DbSet<ProductCategory> ProductCategories { get; set; }
-        public DbSet<Product> Products { get; set; }
+        public DbSet<TodoList> TodoLists { get; set; }
+        public DbSet<TodoItem> TodoItems { get; set; }
 
         public MLSContext(DbContextOptions<MLSContext> options) : base(options)
         {
@@ -15,7 +16,7 @@ namespace MLS.DAL.EF
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var assembly = typeof(ProductCategoryMapping).Assembly;
+            var assembly = typeof(TodoListConfiguration).Assembly;
             modelBuilder.ApplyConfigurationsFromAssembly(assembly);
             base.OnModelCreating(modelBuilder);
         }

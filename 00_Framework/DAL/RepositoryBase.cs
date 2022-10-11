@@ -4,7 +4,8 @@ using System.Linq.Expressions;
 
 namespace Framework.DAL
 {
-    public class RepositoryBase<TKey, T> : IRepository<TKey, T> where T : class
+    public class RepositoryBase<TKey, TEntity> : IBaseRepository<TKey, TEntity>
+        where TEntity : EntityBase, new()
     {
         private readonly DbContext _dbContext;
 
@@ -13,26 +14,40 @@ namespace Framework.DAL
             _dbContext = dbContext;
         }
 
-        public void Add(T item)
+        public void Add(TEntity entity)
         {
-           _dbContext.Add(item);
+            //dbset entity in context
+            //_dbContext.Set<TEntity>().Add(entity);
+            //_dbContext.SaveChanges();
+            //return entity;
+            _dbContext.Add(entity);
         }
 
-        public bool Exists(Expression<Func<T, bool>> predicate)
+        //public void Delete(int id)
+        //{
+            //TEntity entity = new TEntity
+            //{
+            //    Id = id
+            //};
+            //_dbContext.Remove();
+            //_dbContext.SaveChanges();
+
+        //}
+
+        public bool Exists(Expression<Func<TEntity, bool>> predicate)
         {
-            return _dbContext.Set<T>().Any(predicate);
+            return _dbContext.Set<TEntity>().Any(predicate);
         }
 
-        public T Get(TKey key)
+        public TEntity? Get(TKey key)
         {
-            return _dbContext.Find<T>(key);
+            return _dbContext.Find<TEntity>(key);
         }
 
-        public List<T> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
-            return _dbContext.Set<T>().ToList();
+            return _dbContext.Set<TEntity>().AsQueryable();
         }
-
         public void SaveChange()
         {
             _dbContext.SaveChanges();

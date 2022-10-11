@@ -5,17 +5,17 @@ namespace MLS.UI.SiteUI.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ProductCategoryService _productCategoryService;
+        private readonly TaskCategoryService _taskCategoryService;
 
-        public CategoryController(ProductCategoryService productCategoryService)
+        public CategoryController(TaskCategoryService taskCategoryService)
         {
-            _productCategoryService = productCategoryService;
+            _taskCategoryService = taskCategoryService;
         }
 
         public IActionResult Index()
         {
             string categoryName = $"Category{DateTime.Now.Ticks}";
-            _productCategoryService.CreateCategory(categoryName);
+            _taskCategoryService.CreateCategory(categoryName);
             return View();
         }
     }
