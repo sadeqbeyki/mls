@@ -1,10 +1,9 @@
-﻿using Framework.Core;
-using MLS.Core.Entities;
+﻿using AppFramework.Domain;
 using MLS.Domain.Enums;
 
 namespace MLS.Domain.Entities
 {
-    public class TodoItem : EntityBase
+    public class TodoItem : BaseEntity
     {
         public string? Title { get; set; }
 

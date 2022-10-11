@@ -1,0 +1,27 @@
+﻿@model List<MLS.Domain.Entities.TodoList>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    <table>
+        <tr>
+            <th>__</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Details</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td><a asp-controller="TodoList" asp-action="Details" asp-route-id="@item.Id">Details</a></td>
+            </tr>
+        }
+
+    </table>
+}

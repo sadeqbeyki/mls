@@ -1,9 +1,8 @@
-﻿using Framework.Core;
-using MLS.Domain.Entities;
+﻿using AppFramework.Domain;
 
-namespace MLS.Core.Entities
+namespace MLS.Domain.Entities
 {
-    public class TodoList : EntityBase
+    public class TodoList : BaseEntity
     {
         public string? Title { get; set; }
         public string? Description { get; set; }
