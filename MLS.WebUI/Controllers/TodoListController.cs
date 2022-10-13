@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MLS.Contracts.TodoItems;
 using MLS.Contracts.TodoLists;
 using MLS.Domain.Entities;
 using MLS.WebUI.Models;
@@ -8,39 +9,47 @@ namespace MLS.WebUI.Controllers
     public class TodoListController : Controller
     {
         private readonly ITodoListRepository _todoListRepository;
+        private readonly ITodoItemRepository _todoItemRepository;
 
-        public TodoListController(ITodoListRepository todoListRepository)
+        public TodoListController(ITodoListRepository todoListRepository, ITodoItemRepository todoItemRepository)
         {
             _todoListRepository = todoListRepository;
+            _todoItemRepository = todoItemRepository;
         }
 
         public IActionResult Index()
         {
-            var todoLists = _todoListRepository.GetAll();
-            return View(todoLists);
+            var todoList = _todoListRepository.GetAll().ToList();
+            return View(todoList);
         }
         public IActionResult Add()
         {
-            PostTodoListViewModel model = new();
+            CreateTodoListViewModel model = new()
+            {
+                Items = _todoItemRepository.GetAll().ToList()
+            };
             return View(model);
         }
         [HttpPost]
-        public IActionResult Add(PostTodoListViewModel model)
+        public IActionResult Add(CreateTodoListViewModel model)
         {
             if (ModelState.IsValid)
             {
-                TodoList todoList = new()
+                TodoList postTodoList = new()
                 {
                     Title = model.Title,
-                    Description = model.Description
+                    Description = model.Description,
+
                 };
-                _todoListRepository.Add(todoList);
+                _todoListRepository.Add(postTodoList);
                 return RedirectToAction("Index");
             }
-            GetTodoListViewModel getTodoList = new()
+
+            ViewTodoListViewModel getTodoList = new()
             {
                 Title = model.Title,
-                Description = model.Description
+                Description = model.Description,
+                ListItems = _todoItemRepository.GetAll().ToList()
             };
             return View(getTodoList);
         }

@@ -14,12 +14,12 @@ namespace MLS.WebUI.Models
         public string? Description { get; set; }
     }
 
-    public class PostTodoListViewModel : TodoListViewModel
+    public class CreateTodoListViewModel : TodoListViewModel
     {
-
+        public List<TodoItem>? Items { get; set; }
     }
-    public class GetTodoListViewModel : TodoListViewModel
+    public class ViewTodoListViewModel : TodoListViewModel
     {
-        public IList<TodoItem> Items { get; set; } = new List<TodoItem>();
+        public List<TodoItem>? ListItems { get; set; } /*= new List<TodoItem>();*/
     }
 }
