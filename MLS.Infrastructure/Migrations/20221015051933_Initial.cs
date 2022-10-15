@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MLS.Infrastructure.Migrations
 {
-    public partial class initialMLS : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,23 +28,28 @@ namespace MLS.Infrastructure.Migrations
                 name: "TodoItem",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Note = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    Priority = table.Column<int>(type: "int", nullable: false),
-                    Reminder = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ListId = table.Column<long>(type: "bigint", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TodoItem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TodoItem_TodoList_Id",
-                        column: x => x.Id,
+                        name: "FK_TodoItem_TodoList_ListId",
+                        column: x => x.ListId,
                         principalTable: "TodoList",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TodoItem_ListId",
+                table: "TodoItem",
+                column: "ListId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

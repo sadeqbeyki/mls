@@ -16,7 +16,7 @@ namespace MLS.Infrastructure.Configurations
 
             builder.HasMany(x => x.Items)
                 .WithOne(x => x.List)
-                .HasForeignKey(x => x.Id);
+                .HasForeignKey(x => x.ListId);
         }
     }
 }

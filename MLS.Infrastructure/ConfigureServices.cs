@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using MLS.Contracts.TodoItems;
-using MLS.Contracts.TodoLists;
+using MLS.Application.TodoItems;
+using MLS.Application.TodoLists;
 using MLS.Infrastructure.Repositories;
+using MLS.Infrastructure.Persistance;
 
 namespace MLS.Infrastructure
 {

@@ -13,16 +13,20 @@ namespace MLS.WebUI.Models
         [Required]
         [StringLength(500, MinimumLength = 3)]
         public string? Note { get; set; }
+        public long ListId { get; set; }
+
         //public PriorityLevel Priority { get; set; }
         //public DateTime? Reminder { get; set; }
     }
-
-    public class CreateTodoItemViewModel : TodoItemViewModel
+    //لیست انتخاب شده که در نهایت ارسال میشود
+    public class NewTodoItemViewModel : TodoItemViewModel
     {
-        public TodoList? List { get; set; }
+        public List<TodoItem>? Items { get; set; }
+        public List<TodoList>? Lists { get; set; }
     }
+    //در صفحه پست نمایش داده میشود
     public class ViewTodoItemViewModel : TodoItemViewModel
     {
-        public List<TodoList>? Lists { get; set; }
+        public List<int>? SelectedList { get; set; }
     }
 }

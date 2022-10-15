@@ -16,12 +16,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Framework\AppFramework.csproj" />
-    <ProjectReference Include="..\MLS.Contracts\MLS.Contracts.csproj" />
+    <ProjectReference Include="..\MLS.Application\MLS.Application.csproj" />
     <ProjectReference Include="..\MLS.Domain\MLS.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Common\" />
   </ItemGroup>
 
 </Project>

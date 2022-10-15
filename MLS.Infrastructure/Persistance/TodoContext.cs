@@ -2,7 +2,7 @@
 using MLS.Domain.Entities;
 using MLS.Infrastructure.Configurations;
 
-namespace MLS.Infrastructure
+namespace MLS.Infrastructure.Persistance
 {
     public class TodoContext : DbContext
     {

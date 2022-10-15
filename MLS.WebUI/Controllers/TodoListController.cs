@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MLS.Contracts.TodoItems;
-using MLS.Contracts.TodoLists;
+using MLS.Application.TodoItems;
+using MLS.Application.TodoLists;
 using MLS.Domain.Entities;
 using MLS.WebUI.Models;
 
@@ -24,28 +24,28 @@ namespace MLS.WebUI.Controllers
         }
         public IActionResult Add()
         {
-            CreateTodoListViewModel model = new()
+            ViewTodoListViewModel model = new()
             {
                 Items = _todoItemRepository.GetAll().ToList()
             };
             return View(model);
         }
         [HttpPost]
-        public IActionResult Add(CreateTodoListViewModel model)
+        public IActionResult Add(ViewTodoListViewModel model)
         {
             if (ModelState.IsValid)
             {
-                TodoList postTodoList = new()
+                TodoList addTodoList = new()
                 {
                     Title = model.Title,
                     Description = model.Description,
 
                 };
-                _todoListRepository.Add(postTodoList);
+                _todoListRepository.Add(addTodoList);
                 return RedirectToAction("Index");
             }
 
-            ViewTodoListViewModel getTodoList = new()
+            NewTodoListViewModel getTodoList = new()
             {
                 Title = model.Title,
                 Description = model.Description,

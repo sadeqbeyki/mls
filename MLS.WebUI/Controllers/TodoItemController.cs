@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MLS.Contracts.TodoItems;
-using MLS.Contracts.TodoLists;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using MLS.Application.TodoItems;
+using MLS.Application.TodoLists;
 using MLS.Domain.Entities;
 using MLS.WebUI.Models;
 
@@ -10,6 +11,7 @@ namespace MLS.WebUI.Controllers
     {
         private readonly ITodoListRepository _todoListRepository;
         private readonly ITodoItemRepository _todoItemRepository;
+        public SelectList TodoLists;
 
         public TodoItemController(ITodoItemRepository todoItemRepository, ITodoListRepository todoListRepository)
         {
@@ -25,36 +27,32 @@ namespace MLS.WebUI.Controllers
 
         public IActionResult Add()
         {
-            
+            TodoLists = new SelectList(_todoListRepository.GetAll(), "Id", "Title");
             var todoLists = _todoListRepository.GetAll().ToList();
             return View(todoLists);
         }
         [HttpPost]
-        public IActionResult Add(CreateTodoItemViewModel model)
+        public IActionResult Add(ViewTodoItemViewModel model)
         {
             if (ModelState.IsValid)
             {
-                TodoItem todoItem = new()
+                TodoItem viewTodoItem = new()
                 {
                     Title = model.Title,
                     Note = model.Note,
-                    //List = new List<TodoList>(model.List(i => new TodoList
-                    //{
-                    //    ItemId = i.Id,
-                    //}).ToList())
+                    ListId = model.ListId,
                 };
-                _todoItemRepository.Add(todoItem);
+                _todoItemRepository.Add(viewTodoItem);
                 return RedirectToAction("Index");
             }
-            ViewTodoItemViewModel viewTodoItem = new()
+            NewTodoItemViewModel newTodoItem = new()
             {
                 Title = model?.Title,
                 Note = model?.Note,
 
-                Lists = _todoListRepository.GetAll().ToList(),
             };
 
-            return View(viewTodoItem);
+            return View(newTodoItem);
         }
     }
 }

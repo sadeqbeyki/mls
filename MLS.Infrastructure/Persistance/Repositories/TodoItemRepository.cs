@@ -1,7 +1,8 @@
 ﻿
 using AppFramework.Infrastructure;
-using MLS.Contracts.TodoItems;
+using MLS.Application.TodoItems;
 using MLS.Domain.Entities;
+using MLS.Infrastructure.Persistance;
 
 namespace MLS.Infrastructure.Repositories
 {
