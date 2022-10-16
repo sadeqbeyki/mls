@@ -1,6 +1,5 @@
 ﻿using MLS.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
-using RequiredAttribute = System.ComponentModel.DataAnnotations.RequiredAttribute;
 
 namespace MLS.WebUI.Models
 {
@@ -14,12 +13,12 @@ namespace MLS.WebUI.Models
         public string? Description { get; set; }
     }
 
-    public class ViewTodoListViewModel : TodoListViewModel
+    public class DisplayTodoListViewModel : TodoListViewModel
     {
         public List<TodoItem>? Items { get; set; }
     }
-    public class NewTodoListViewModel : TodoListViewModel
+    public class ViewTodoListViewModel : TodoListViewModel
     {
-        public List<TodoItem>? ListItems { get; set; } /*= new List<TodoItem>();*/
+        public List<int>? ListItems { get; set; } 
     }
 }

@@ -22,13 +22,30 @@ namespace MLS.WebUI.Controllers
             var todoList = _todoListRepository.GetAll().ToList();
             return View(todoList);
         }
+        public IActionResult Details()
+        {
+
+            var items = _todoItemRepository.GetAll().ToList();
+            TodoList todoList = new();
+            var itemList = new List<TodoItem>();
+            foreach (var item in items)
+            {
+                if (item.ListId == todoList.Id)
+                {
+                    ViewTodoListViewModel model = new();
+                }
+            }
+            return View();
+            //DisplayTodoListViewModel model = new()
+            //{
+            //    Items = _todoItemRepository.GetAll().ToList()
+            //};
+            //return View(model);
+
+        }
         public IActionResult Add()
         {
-            ViewTodoListViewModel model = new()
-            {
-                Items = _todoItemRepository.GetAll().ToList()
-            };
-            return View(model);
+            return View();
         }
         [HttpPost]
         public IActionResult Add(ViewTodoListViewModel model)
@@ -39,19 +56,20 @@ namespace MLS.WebUI.Controllers
                 {
                     Title = model.Title,
                     Description = model.Description,
-
+                    
                 };
                 _todoListRepository.Add(addTodoList);
                 return RedirectToAction("Index");
             }
 
-            NewTodoListViewModel getTodoList = new()
-            {
-                Title = model.Title,
-                Description = model.Description,
-                ListItems = _todoItemRepository.GetAll().ToList()
-            };
-            return View(getTodoList);
+            //DisplayTodoListViewModel getTodoList = new()
+            //{
+            //    Title = model.Title,
+            //    Description = model.Description,
+            //    Items = _todoItemRepository.GetAll().ToList()
+            //};
+            //return View(getTodoList);
+            return View();
         }
     }
 }

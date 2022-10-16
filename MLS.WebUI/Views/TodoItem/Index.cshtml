@@ -10,6 +10,8 @@
         <tr>
             <th>__</th>
             <th>Title</th>
+            <th>List Name</th>
+            <th>Creation Date</th>
             <th>Note</th>
             <th>Details</th>
         </tr>
@@ -18,8 +20,10 @@
             <tr>
                 <td>@item.Id</td>
                 <td>@item.Title</td>
+                <td>@item.ListName</td>
+                <td>@item.CreationDate</td>
                 <td>@item.Note</td>
-                <td><a asp-controller="TodoItem" asp-action="Details" asp-route-id="@item.Id">Details</a></td>
+                @*<td><a asp-controller="TodoItem" asp-action="Details" asp-route-id="@item.Id">Details</a></td>*@
             </tr>
         }
 

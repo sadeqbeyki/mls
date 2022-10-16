@@ -11,7 +11,9 @@
             <th>__</th>
             <th>Title</th>
             <th>Description</th>
+            <th>Createion Date</th>
             <th>Details</th>
+            <th>Add Item</th>
         </tr>
         @foreach (var item in Model)
         {
@@ -19,8 +21,10 @@
                 <td>@item.Id</td>
                 <td>@item.Title</td>
                 <td>@item.Description</td>
+                <td>@item.CreationDate</td>
                 <td><a asp-controller="TodoList" asp-action="Details" asp-route-id="@item.Id">Details</a></td>
-                <td><a asp-controller="TodoItem" asp-action="Add" asp-route-id="@item.Id">Add Item</a></td>
+                <td><a asp-controller="TodoItem" asp-action="Add">Add Item</a></td>
+                @*<td><a asp-controller="TodoItem" asp-action="Add" asp-route-id="@item.Id">Add Item</a></td>*@
             </tr>
         }
 

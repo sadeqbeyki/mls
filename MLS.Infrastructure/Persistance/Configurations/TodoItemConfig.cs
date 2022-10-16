@@ -8,13 +8,13 @@ namespace MLS.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<TodoItem> builder)
         {
-            builder.ToTable("TodoItem");
+            builder.ToTable("TodoItems");
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Title).HasMaxLength(255).IsRequired();
             builder.Property(x => x.Note).HasMaxLength(500).IsRequired(false);
 
-            builder.HasOne(x => x.List)
+            builder.HasOne(x => x.ListName)
                 .WithMany(x => x.Items)
                 .HasForeignKey(x => x.ListId);
         }

@@ -1,4 +1,4 @@
-﻿@model NewTodoItemViewModel
+﻿@model DisplayTodoItemViewModel
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <label asp-for="ListId" class="control-label">لیست ها</label>
                     <select class="form-control" asp-for="ListId"
-                        asp-items='new SelectList(Model.Lists, "Id", "Title")'>
+                        asp-items='new SelectList(Model.TodoLists, "Id", "Title")'>
                         <option value="">لیست ها</option>
                     </select>
                     <span asp-validation-for="ListId" class="error"></span>
@@ -49,14 +49,14 @@
 
     </div>*@
 
-    <div class="mb-3">
+@*    <div class="mb-3">
             <select class="form-control select2" name="SelectedList" multiple>
-            @foreach (var item in Model.Items)
+            @foreach (var item in Model.TodoLists)
             {
             <option value="@item.Id">@item.Title</option>
             }
         </select>
-    </div>
+    </div>*@
         <button type="submit" class="btn btn-primary">Submit</button>
         @*<input type="submit" class="btn btn-primary" value="Save" />*@
     </form>

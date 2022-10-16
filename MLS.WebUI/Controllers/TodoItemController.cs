@@ -21,38 +21,46 @@ namespace MLS.WebUI.Controllers
 
         public IActionResult Index()
         {
+            //TodoLists = new SelectList(_todoListRepository.GetAll(), "Id", "Title");
+
             var todoItems = _todoItemRepository.GetAll().ToList();
             return View(todoItems);
         }
 
         public IActionResult Add()
         {
-            TodoLists = new SelectList(_todoListRepository.GetAll(), "Id", "Title");
-            var todoLists = _todoListRepository.GetAll().ToList();
-            return View(todoLists);
+            DisplayTodoItemViewModel newModel = new()
+            {
+                TodoLists = _todoListRepository.GetAll().ToList(),
+            };
+            return View(newModel);
         }
         [HttpPost]
         public IActionResult Add(ViewTodoItemViewModel model)
         {
             if (ModelState.IsValid)
             {
-                TodoItem viewTodoItem = new()
+                TodoItem todoItem = new()
                 {
                     Title = model.Title,
                     Note = model.Note,
+
                     ListId = model.ListId,
-                };
-                _todoItemRepository.Add(viewTodoItem);
+
+                    //ListName = (TodoList)model.SelectedList.Select(l => new TodoList { Id = l })
+               };
+                _todoItemRepository.Add(todoItem);
                 return RedirectToAction("Index");
             }
-            NewTodoItemViewModel newTodoItem = new()
+
+            DisplayTodoItemViewModel displayTodoItem = new()
             {
                 Title = model?.Title,
                 Note = model?.Note,
 
+                TodoLists = _todoListRepository.GetAll().ToList()
             };
-
-            return View(newTodoItem);
+            return View(displayTodoItem);
         }
     }
 }
