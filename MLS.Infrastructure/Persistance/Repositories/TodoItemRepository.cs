@@ -1,5 +1,4 @@
-﻿
-using AppFramework.Infrastructure;
+﻿using AppFramework.Infrastructure;
 using MLS.Application.TodoItems;
 using MLS.Domain.Entities;
 using MLS.Infrastructure.Persistance;
@@ -11,5 +10,6 @@ namespace MLS.Infrastructure.Repositories
         public TodoItemRepository(TodoContext dbContext) : base(dbContext)
         {
         }
+
     }
 }

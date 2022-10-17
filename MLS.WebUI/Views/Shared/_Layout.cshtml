@@ -35,7 +35,7 @@
 
                 <div class="container-fluid">
 
-                    <h1 class="h3 mb-4 text-gray-800">Title</h1>
+                    <h1 class="h3 mb-4 text-gray-800">@ViewData["Title"]</h1>
                     @RenderBody()
                 </div>
 
@@ -62,6 +62,9 @@
     <script src="~/js/sb-admin-2.min.js"></script>
 
     <partial name="_ValidationScriptsPartial" />
+
+    <!--Modal-->
+    <script src="~/js/site.js"></script>
 
     @RenderSection("scripts", false)
 </body>

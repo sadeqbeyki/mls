@@ -1,0 +1,48 @@
+﻿@*@model MLS.Domain.Entities.TodoItem*@
+@model UpdateTodoItemViewModel
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+</div>
+
+<form asp-controller="TodoItem" asp-action="Update"
+      method="post"
+      data-ajax="true"
+      data-callback=""
+      data-action="Refresh"
+      enctype="multipart/form-data">
+    <div asp-validation-summary="All"></div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label">Title</label>
+                    <input type="text" asp-for="Title" class="form-control" maxlength="50">
+                    <span asp-validation-for=Title></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Note" class="form-label">Note</label>
+                    <input type="text" asp-for="Note" class="form-control" maxlength="500">
+                    <span asp-validation-for=Note></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="ListId" class="control-label">Todo Lists</label>
+                    <select class="form-control" asp-for="ListId"
+                            asp-items='new SelectList(Model.TodoLists, "Id", "Title")'>
+                        <option value="">Todo Lists</option>
+                    </select>
+                    <span asp-validation-for="ListId" class="error"></span>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" asp-for="Id" value="@Model.Id" />
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">بستن</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+</form>

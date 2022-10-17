@@ -22,6 +22,13 @@ namespace AppFramework.Infrastructure
             return entity;
         }
 
+        public void Update(TEntity entity)
+        {
+            _dbContext.Update(entity);
+            _dbContext.SaveChanges();
+            //_dbContext.Entry(entity).State = EntityState.Modified;
+        }
+
         public void Delete(int key)
         {
             TEntity entity = new()
@@ -46,10 +53,5 @@ namespace AppFramework.Infrastructure
         {
             return _dbContext.Set<TEntity>().AsQueryable();
         }
-
-        //public void SaveChange()
-        //{
-        //    _dbContext.SaveChanges();
-        //}
     }
 }
