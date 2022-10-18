@@ -1,4 +1,5 @@
 ﻿using AppFramework.Domain;
+using System.Xml.Linq;
 
 namespace MLS.Domain.Entities
 {
@@ -11,5 +12,14 @@ namespace MLS.Domain.Entities
 
         //public PriorityLevel Priority { get; set; }
         //public DateTime? Reminder { get; set; }
+
+        public void Edit(string title, string note, long listId)
+        {
+            Title = title;
+
+            Note = note;
+
+            ListId = listId;
+        }
     }
 }

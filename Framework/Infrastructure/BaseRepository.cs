@@ -22,11 +22,11 @@ namespace AppFramework.Infrastructure
             return entity;
         }
 
-        public void Update(TEntity entity)
+        public TEntity Update(TEntity entity)
         {
             _dbContext.Update(entity);
             _dbContext.SaveChanges();
-            //_dbContext.Entry(entity).State = EntityState.Modified;
+            return (entity);
         }
 
         public void Delete(int key)

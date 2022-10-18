@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Razor.Language;
 using MLS.Application.TodoItems;
 using MLS.Application.TodoLists;
 using MLS.Domain.Entities;
 using MLS.WebUI.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace MLS.WebUI.Controllers;
 
@@ -21,8 +23,6 @@ public class TodoItemController : Controller
 
     public IActionResult Index()
     {
-        TodoLists = new SelectList(_todoListRepository.GetAll(), "Id", "Title");
-
         var todoItems = _todoItemRepository.GetAll().ToList();
         return View(todoItems);
     }
@@ -69,18 +69,33 @@ public class TodoItemController : Controller
     [HttpGet]
     public PartialViewResult Update(long id)
     {
-        var item = _todoItemRepository.Get(id);
+        var item = _todoItemRepository.GetDetails(id);
+
+        item.TodoLists = _todoListRepository.GetAll().ToList();
+
         return PartialView("Update", item);
+
+
+
+
+        //var todoItem = _todoItemRepository.Get(id);
+        //UpdateTodoItemViewModel todoLists = new()
+        //{
+        //    TodoLists = _todoListRepository.GetAll().ToList()
+        //};
+        //var item = todoLists.TodoLists.Where(x => x.Id == todoItem.ListId);
+
+        //var item = _todoItemRepository.Get(id);
+        //TodoLists = new SelectList(_todoListRepository.GetAll(), "Id", "Title");
+        //return PartialView("Update",item);
     }
     [HttpPost]
-    public IActionResult Update(UpdateTodoItemViewModel model)
+    public IActionResult Update(UpdateTodoItem model)
     {
-        if (ModelState.IsValid)
-        {
-            //_todoItemRepository.Update(model);
-            return RedirectToAction("Index");
-        }
-        return new JsonResult(model);
+
+        var result = _todoItemRepository.Edit(model);
+        return new JsonResult(result);
+
     }
     #endregion
 

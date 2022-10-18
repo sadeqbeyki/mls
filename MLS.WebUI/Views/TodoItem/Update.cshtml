@@ -1,5 +1,5 @@
-﻿@*@model MLS.Domain.Entities.TodoItem*@
-@model UpdateTodoItemViewModel
+﻿@using MLS.Application.TodoItems
+@model UpdateTodoItem
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -32,6 +32,7 @@
                 <div class="form-group">
                     <label asp-for="ListId" class="control-label">Todo Lists</label>
                     <select class="form-control" asp-for="ListId"
+                            
                             asp-items='new SelectList(Model.TodoLists, "Id", "Title")'>
                         <option value="">Todo Lists</option>
                     </select>
