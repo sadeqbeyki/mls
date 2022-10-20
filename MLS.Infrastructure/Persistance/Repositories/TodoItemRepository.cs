@@ -43,7 +43,7 @@ namespace MLS.Infrastructure.Repositories
             }).FirstOrDefault(x => x.Id == id);
         }
 
-        public TodoItem GetItemWithList(long id)
+        public TodoItem? GetItemWithList(long id)
         {
             return _todoContext.TodoItems
                 .Include(x => x.ListName)

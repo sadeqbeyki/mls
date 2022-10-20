@@ -1,6 +1,6 @@
 ﻿namespace MLS.Application.TodoItems
 {
-    public class UpdateTodoItem : AddTodoItemViewModel
+    public class UpdateTodoItem : AddTodoItem
     {
         public long Id { get; set; }
     }

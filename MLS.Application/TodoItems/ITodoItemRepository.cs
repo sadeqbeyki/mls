@@ -7,6 +7,6 @@ namespace MLS.Application.TodoItems
     {
         UpdateTodoItem? GetDetails(long id);
         OperationResult Edit(UpdateTodoItem? todoItem);
-        TodoItem GetItemWithList(long id);
+        TodoItem? GetItemWithList(long id);
     }
 }

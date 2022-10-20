@@ -53,5 +53,7 @@ namespace AppFramework.Infrastructure
         {
             return _dbContext.Set<TEntity>().AsQueryable();
         }
+
+
     }
 }

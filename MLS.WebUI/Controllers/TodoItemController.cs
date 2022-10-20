@@ -13,7 +13,7 @@ public class TodoItemController : Controller
 {
     private readonly ITodoListRepository _todoListRepository;
     private readonly ITodoItemRepository _todoItemRepository;
-    public SelectList TodoLists;
+
 
     public TodoItemController(ITodoItemRepository todoItemRepository, ITodoListRepository todoListRepository)
     {
@@ -45,10 +45,7 @@ public class TodoItemController : Controller
             {
                 Title = model.Title,
                 Note = model.Note,
-
                 ListId = model.ListId,
-
-                //ListName = (TodoList)model.SelectedList.Select(l => new TodoList { Id = l })
             };
             _todoItemRepository.Add(todoItem);
             return RedirectToAction("Index");
@@ -67,35 +64,21 @@ public class TodoItemController : Controller
 
     #region Update TodoItem
     [HttpGet]
-    public PartialViewResult Update(long id)
+    public IActionResult Update(long id)
     {
         var item = _todoItemRepository.GetDetails(id);
-
         item.TodoLists = _todoListRepository.GetAll().ToList();
-
         return PartialView("Update", item);
-
-
-
-
-        //var todoItem = _todoItemRepository.Get(id);
-        //UpdateTodoItemViewModel todoLists = new()
-        //{
-        //    TodoLists = _todoListRepository.GetAll().ToList()
-        //};
-        //var item = todoLists.TodoLists.Where(x => x.Id == todoItem.ListId);
-
-        //var item = _todoItemRepository.Get(id);
-        //TodoLists = new SelectList(_todoListRepository.GetAll(), "Id", "Title");
-        //return PartialView("Update",item);
     }
     [HttpPost]
     public IActionResult Update(UpdateTodoItem model)
     {
-
-        var result = _todoItemRepository.Edit(model);
-        return new JsonResult(result);
-
+        if (ModelState.IsValid)
+        {
+            _todoItemRepository.Edit(model);
+            return new JsonResult(model);
+        }
+        return RedirectToAction("Index");
     }
     #endregion
 
@@ -104,7 +87,6 @@ public class TodoItemController : Controller
     {
         _todoItemRepository.Delete(id);
         return RedirectToAction("Index");
-
     }
     #endregion
 

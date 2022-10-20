@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MLS.Application.TodoItems
 {
-    public class AddTodoItemViewModel
+    public class AddTodoItem
     {
         [Required]
         [StringLength(50, MinimumLength = 3)]
