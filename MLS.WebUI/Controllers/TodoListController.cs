@@ -69,20 +69,18 @@ public class TodoListController : Controller
 
     #region Update TodoList
     [HttpGet]
-    public PartialViewResult Update(long id)
+    public IActionResult Update(long id)
     {
         var list = _todoListRepository.Get(id);
-        return PartialView("Update", list);
+        return View("Update", list);
     }
     [HttpPost]
     public IActionResult Update(TodoList model)
     {
         if (ModelState.IsValid)
-        {
+
             _todoListRepository.Update(model);
-            return RedirectToAction("Index");
-        }
-        return new JsonResult(model);
+        return RedirectToAction("Index");
     }
     #endregion
 

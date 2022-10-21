@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Our Lifestyle</title>
+    <title>@ViewData["Title"] | Our Lifestyle</title>
 
     <!-- Custom fonts for this template-->
     <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -53,6 +53,7 @@
 
     <!-- Bootstrap core JavaScript-->
     <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/jquery/jquery-3.6.1.min.js"></script>
     <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -64,7 +65,7 @@
     <partial name="_ValidationScriptsPartial" />
 
     <!--Modal-->
-    <script src="~/js/site.js"></script>
+@*    <script src="~/js/site.js" asp-append-version="true"></script>*@
 
     @RenderSection("scripts", false)
 </body>

@@ -1,8 +1,14 @@
 ﻿@model List<MLS.Domain.Entities.TodoList>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Add List";
 }
+
+    <div>
+    <a asp-controller="TodoList" asp-action="Add" class="btn btn-primary">
+        Add List <i class="fa fa-plus"></i>
+    </a>
+    </div>
 
 @if (Model != null && Model.Count > 0)
 {
@@ -24,7 +30,6 @@
                 <td>@item.CreationDate</td>
                 <td><a asp-controller="TodoList" asp-action="Details" asp-route-id="@item.Id">Details</a></td>
                 <td>
-                    @*<a asp-controller="TodoItem" asp-action="Add" asp-route-id="@item.Id">Add Item</a> |*@
                     <a asp-controller="TodoList" asp-action="Update" asp-route-id="@item.Id">Edit</a> |
                     <a asp-controller="TodoList" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
@@ -32,4 +37,4 @@
         }
 
     </table>
-}
+}   

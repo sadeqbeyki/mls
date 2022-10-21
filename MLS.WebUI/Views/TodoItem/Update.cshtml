@@ -1,56 +1,37 @@
 ﻿@model MLS.Application.TodoItems.UpdateTodoItem
 
-<div class="modal fade" id="updateItem">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h4 class="modal-title" id="updateItemLabel">Update Item</h4>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span>×</span>
-                </button>
+<form asp-controller="TodoItem" asp-action="Update"
+      method="post"
+      enctype="multipart/form-data">
+    <div asp-validation-summary="All"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label">Title</label>
+                <input type="text" asp-for="Title" class="form-control" maxlength="50">
+                <span asp-validation-for="Title" class="error"></span>
             </div>
-
-            <div class="modal-body">
-            <form action="Update">
-                <div asp-validation-summary="All"></div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label asp-for="Title" class="form-label">Title</label>
-                            <input type="text" asp-for="Title" class="form-control" maxlength="50">
-                                <span asp-validation-for="Title" class="error"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label asp-for="Note" class="form-label">Note</label>
-                            <input type="text" asp-for="Note" class="form-control" maxlength="500">
-                                <span asp-validation-for="Note" class="error"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label asp-for="ListId" class="control-label">Todo Lists</label>
-                            <select class="form-control" asp-for="ListId"
-                                    asp-items='new SelectList(Model.TodoLists, "Id", "Title")'>
-                                <option value="">Todo Lists</option>
-                            </select>
-                            <span asp-validation-for="ListId" class="error"></span>
-                        </div>
-                    </div>
-                </div>
-                @*<input type="hidden" asp-for="Id" value="@Model.Id" />*@
-            </form>
+            <div class="mb-3">
+                <label asp-for="Note" class="form-label">Note</label>
+                <input type="text" asp-for="Note" class="form-control" maxlength="500">
+                <span asp-validation-for="Note" class="error"></span>
             </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">بستن</button>
-                <button type="button" class="btn btn-primary" data-save="modal">Update</button>
-            </div>
-
         </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label asp-for="ListId" class="control-label">Todo Lists</label>
+                <select class="form-control" asp-for="ListId"
+                        asp-items='new SelectList(Model.TodoLists, "Id", "Title")'>
+                    <option value="">Todo Lists</option>
+                </select>
+                <span asp-validation-for="ListId" class="error"></span>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" asp-for="Id" value="@Model.Id" />
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
 
 
