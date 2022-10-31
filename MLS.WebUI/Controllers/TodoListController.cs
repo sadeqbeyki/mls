@@ -2,7 +2,8 @@
 using MLS.Application.TodoItems;
 using MLS.Application.TodoLists;
 using MLS.Domain.Entities;
-using MLS.WebUI.Models;
+using MLS.WebUI.Models.TodoItemModel;
+using MLS.WebUI.Models.TodoListModel;
 
 namespace MLS.WebUI.Controllers;
 
@@ -25,34 +26,24 @@ public class TodoListController : Controller
 
     #region Create TodoList
     [HttpGet]
-    public IActionResult Add()
+    public IActionResult Create()
     {
         return View();
     }
     [HttpPost]
-    public IActionResult Add(ViewTodoListViewModel model)
+    public IActionResult Create(CreateTodoListViewModel model)
     {
-        //if valid
         if (ModelState.IsValid)
         {
-            TodoList addTodoList = new()
+            TodoList todoList = new()
             {
                 Title = model.Title,
                 Description = model.Description,
-
             };
-            _todoListRepository.Add(addTodoList);
+            _todoListRepository.Create(todoList);
             return RedirectToAction("Index");
         }
-
-        //if not valid
-        DisplayTodoListViewModel getTodoList = new()
-        {
-            Title = model.Title,
-            Description = model.Description,
-            Items = _todoItemRepository.GetAll().ToList()
-        };
-        return View(getTodoList);
+        return View(model);
 
     }
     #endregion
@@ -61,9 +52,25 @@ public class TodoListController : Controller
     public IActionResult Details(int id)
     {
         var items = _todoItemRepository.GetAll().ToList();
+        if (items != null)
+        {
         var itemsList = items.Where(x => x.ListId == id).ToList();
         return View(itemsList);
 
+        }
+        //if (itemsList.Count > 0)
+        //{
+        //    List<ViewTodoItemViewModel> model = new()
+        //    {
+        //        ListId = id,
+        //        Id = itemsList.ToList().First().Id,
+        //        Title = itemsList.ToList().First().Title,
+        //        CreationDate = itemsList.ToList().First().CreationDate.ToString(),
+        //        Note = itemsList.ToList().First().Note
+        //    };
+        //    return View(model);
+        //}
+        return NotFound();
     }
     #endregion
 
@@ -71,16 +78,35 @@ public class TodoListController : Controller
     [HttpGet]
     public IActionResult Update(long id)
     {
-        var list = _todoListRepository.Get(id);
-        return View("Update", list);
+        var todoList = _todoListRepository.Get(id);
+        if (todoList != null)
+        {
+            UpdateTodoListViewModel model = new()
+            {
+                Id = id,
+                Title = todoList.Title,
+                Description = todoList.Description
+            };
+            return View(model);
+        }
+        return NotFound();
     }
     [HttpPost]
-    public IActionResult Update(TodoList model)
+    public IActionResult Update(long id, UpdateTodoListViewModel model)
     {
         if (ModelState.IsValid)
+        {
+            var todoList = _todoListRepository.Get(id);
+            if (todoList != null)
+            {
+                todoList.Title = model.Title;
+                todoList.Description = model.Description;
 
-            _todoListRepository.Update(model);
-        return RedirectToAction("Index");
+                _todoListRepository.Update(todoList);
+            }
+            return RedirectToAction("Index");
+        }
+        return View(model);
     }
     #endregion
 

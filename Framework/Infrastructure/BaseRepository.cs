@@ -15,7 +15,7 @@ namespace AppFramework.Infrastructure
             _dbContext = dbContext;
         }
 
-        public TEntity Add(TEntity entity)
+        public TEntity Create(TEntity entity)
         {
             _dbContext.Set<TEntity>().Add(entity);
             _dbContext.SaveChanges();

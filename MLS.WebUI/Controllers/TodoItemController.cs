@@ -2,7 +2,7 @@
 using MLS.Application.TodoItems;
 using MLS.Application.TodoLists;
 using MLS.Domain.Entities;
-using MLS.WebUI.Models;
+using MLS.WebUI.Models.TodoItemModel;
 
 namespace MLS.WebUI.Controllers;
 
@@ -44,7 +44,7 @@ public class TodoItemController : Controller
                 Note = model.Note,
                 ListId = model.ListId,
             };
-            _todoItemRepository.Add(todoItem);
+            _todoItemRepository.Create(todoItem);
             return RedirectToAction("Index");
         }
 

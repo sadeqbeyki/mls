@@ -1,24 +1,16 @@
 ﻿using MLS.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace MLS.WebUI.Models
+namespace MLS.WebUI.Models.TodoListModel
 {
-    public abstract class TodoListViewModel
+    public class DisplayTodoListViewModel
     {
         [Required]
-        [StringLength(50,MinimumLength =3)]
+        [StringLength(50, MinimumLength = 3)]
         public string? Title { get; set; }
         [Required]
         [StringLength(500, MinimumLength = 3)]
         public string? Description { get; set; }
-    }
-
-    public class DisplayTodoListViewModel : TodoListViewModel
-    {
         public List<TodoItem>? Items { get; set; }
-    }
-    public class ViewTodoListViewModel : TodoListViewModel
-    {
-        public List<int>? ListItems { get; set; } 
     }
 }
