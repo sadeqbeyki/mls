@@ -1829,4 +1829,8 @@
     <ProjectReference Include="..\MLS.Infrastructure\MLS.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\" />
+  </ItemGroup>
+
 </Project>

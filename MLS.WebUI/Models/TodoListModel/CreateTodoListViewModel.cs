@@ -10,5 +10,6 @@ namespace MLS.WebUI.Models.TodoListModel
         [Required]
         [StringLength(500, MinimumLength = 3)]
         public string? Description { get; set; }
+        public IFormFile  ListImage { get; set; }
     }
 }

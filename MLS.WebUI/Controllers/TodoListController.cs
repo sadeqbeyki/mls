@@ -11,11 +11,13 @@ public class TodoListController : Controller
 {
     private readonly ITodoListRepository _todoListRepository;
     private readonly ITodoItemRepository _todoItemRepository;
+    private readonly IWebHostEnvironment _webHostEnvironment;
 
-    public TodoListController(ITodoListRepository todoListRepository, ITodoItemRepository todoItemRepository)
+    public TodoListController(ITodoListRepository todoListRepository, ITodoItemRepository todoItemRepository, IWebHostEnvironment webHostEnvironment)
     {
         _todoListRepository = todoListRepository;
         _todoItemRepository = todoItemRepository;
+        _webHostEnvironment = webHostEnvironment;
     }
 
     public IActionResult Index()
@@ -33,18 +35,36 @@ public class TodoListController : Controller
     [HttpPost]
     public IActionResult Create(CreateTodoListViewModel model)
     {
+        string stringFileName = UploadFile(model);
         if (ModelState.IsValid)
         {
             TodoList todoList = new()
             {
                 Title = model.Title,
                 Description = model.Description,
+                ListImage = stringFileName
             };
             _todoListRepository.Create(todoList);
             return RedirectToAction("Index");
         }
         return View(model);
 
+    }
+
+    private string UploadFile(CreateTodoListViewModel model)
+    {
+        string fileName = string.Empty;
+        if (model.ListImage != null)
+        {
+            string uploadDir = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
+            fileName = Guid.NewGuid().ToString() + "-" + model.ListImage.FileName;
+            string filePath = Path.Combine(uploadDir, fileName);
+            using(var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                model.ListImage.CopyTo(fileStream);
+            }
+        }
+        return fileName;
     }
     #endregion
 
@@ -54,8 +74,8 @@ public class TodoListController : Controller
         var items = _todoItemRepository.GetAll().ToList();
         if (items != null)
         {
-        var itemsList = items.Where(x => x.ListId == id).ToList();
-        return View(itemsList);
+            var itemsList = items.Where(x => x.ListId == id).ToList();
+            return View(itemsList);
 
         }
         //if (itemsList.Count > 0)
