@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MLS.Application.TodoItems;
 using MLS.Application.TodoLists;
 using MLS.Domain.Entities;
-using MLS.WebUI.Models.TodoItemModel;
 using MLS.WebUI.Models.TodoListModel;
 
 namespace MLS.WebUI.Controllers;
-
+[Authorize]
 public class TodoListController : Controller
 {
     private readonly ITodoListRepository _todoListRepository;
@@ -59,10 +59,8 @@ public class TodoListController : Controller
             string uploadDir = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
             fileName = Guid.NewGuid().ToString() + "-" + model.ListImage.FileName;
             string filePath = Path.Combine(uploadDir, fileName);
-            using(var fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                model.ListImage.CopyTo(fileStream);
-            }
+            using var fileStream = new FileStream(filePath, FileMode.Create);
+            model.ListImage.CopyTo(fileStream);
         }
         return fileName;
     }
@@ -105,7 +103,7 @@ public class TodoListController : Controller
             {
                 Id = id,
                 Title = todoList.Title,
-                Description = todoList.Description
+                Description = todoList.Description,
             };
             return View(model);
         }
@@ -114,6 +112,7 @@ public class TodoListController : Controller
     [HttpPost]
     public IActionResult Update(long id, UpdateTodoListViewModel model)
     {
+        string stringFileName = UploadFile(model);
         if (ModelState.IsValid)
         {
             var todoList = _todoListRepository.Get(id);
@@ -121,6 +120,7 @@ public class TodoListController : Controller
             {
                 todoList.Title = model.Title;
                 todoList.Description = model.Description;
+                todoList.ListImage = stringFileName;
 
                 _todoListRepository.Update(todoList);
             }

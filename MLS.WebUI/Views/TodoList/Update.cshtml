@@ -19,6 +19,16 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label asp-for="ListImage" class="form-label">Image</label>
+                <input type="file" asp-for="ListImage" class="form-control">
+                <span asp-validation-for=ListImage></span>
+            </div>
+        </div>
+    </div>
+    <br />
     <input type="hidden" asp-for="Id" value="@Model.Id" />
     <button type="submit" class="btn btn-primary">Update</button>
 </form>

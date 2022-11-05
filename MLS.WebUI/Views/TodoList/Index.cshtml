@@ -34,8 +34,8 @@
                 <td>@item.CreationDate</td>
                 <td><a asp-controller="TodoList" asp-action="Details" asp-route-id="@item.Id">Details</a></td>
                 <td>
-                    <a asp-controller="TodoList" asp-action="Update" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-controller="TodoList" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a class="btn btn-primary" asp-controller="TodoList" asp-action="Update" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-primary" asp-controller="TodoList" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }
