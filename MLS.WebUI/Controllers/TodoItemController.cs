@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MLS.Application.TodoItems;
 using MLS.Application.TodoLists;
 using MLS.Domain.Entities;
@@ -20,7 +21,7 @@ public class TodoItemController : Controller
 
     public IActionResult Index()
     {
-        var todoItems = _todoItemRepository.GetAll().ToList();
+        var todoItems = _todoItemRepository.GetAll().AsNoTrackingWithIdentityResolution().ToList();
         return View(todoItems);
     }
 
@@ -29,7 +30,7 @@ public class TodoItemController : Controller
     {
         DisplayTodoItemViewModel model = new()
         {
-            TodoLists = _todoListRepository.GetAll().ToList(),
+            TodoLists = _todoListRepository.GetAll().ToList()
         };
         return View(model);
     }

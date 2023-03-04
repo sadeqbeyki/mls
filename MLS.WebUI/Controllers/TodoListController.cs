@@ -6,7 +6,7 @@ using MLS.Domain.Entities;
 using MLS.WebUI.Models.TodoListModel;
 
 namespace MLS.WebUI.Controllers;
-[Authorize]
+//[Authorize]
 public class TodoListController : Controller
 {
     private readonly ITodoListRepository _todoListRepository;
