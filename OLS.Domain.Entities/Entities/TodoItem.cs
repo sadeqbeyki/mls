@@ -1,25 +1,22 @@
-﻿using AppFramework.Domain;
-using System.Xml.Linq;
+﻿
+namespace OLS.Domain.Entities;
 
-namespace MLS.Domain.Entities
+public class TodoItem : BaseEntity
 {
-    public class TodoItem : BaseEntity
+    public string? Title { get; set; }
+    public string? Note { get; set; }
+    public long ListId { get; set; }
+    public TodoList? ListName { get; set; }
+
+    //public PriorityLevel Priority { get; set; }
+    //public DateTime? Reminder { get; set; }
+
+    public void Edit(string? title, string? note, long listId)
     {
-        public string? Title { get; set; }
-        public string? Note { get; set; }
-        public long ListId { get; set; }
-        public TodoList? ListName { get; set; }
+        Title = title;
 
-        //public PriorityLevel Priority { get; set; }
-        //public DateTime? Reminder { get; set; }
+        Note = note;
 
-        public void Edit(string? title, string? note, long listId)
-        {
-            Title = title;
-
-            Note = note;
-
-            ListId = listId;
-        }
+        ListId = listId;
     }
 }
