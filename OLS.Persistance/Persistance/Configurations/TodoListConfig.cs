@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MLS.Domain.Entities;
+using OLS.Domain.Entities;
 
 namespace OLS.Persistance.Persistance.Configurations
 {

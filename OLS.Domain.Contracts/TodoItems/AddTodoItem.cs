@@ -1,4 +1,7 @@
 ﻿
+using OLS.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
+
 namespace OLS.Domain.Contracts.TodoItems;
 
 public class AddTodoItem

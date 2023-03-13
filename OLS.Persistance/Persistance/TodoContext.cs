@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MLS.Domain.Entities;
+using OLS.Domain.Entities;
 using OLS.Persistance.Persistance.Configurations;
 
-namespace MLS.Infrastructure.Persistance
+namespace OLS.Persistance.Persistance
 {
     public class TodoContext : DbContext
     {

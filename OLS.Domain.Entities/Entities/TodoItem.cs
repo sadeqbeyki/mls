@@ -1,4 +1,6 @@
 ﻿
+using AppFramework.Domain;
+
 namespace OLS.Domain.Entities;
 
 public class TodoItem : BaseEntity

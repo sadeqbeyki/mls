@@ -1,10 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using MLS.Application.TodoItems;
-using MLS.Application.TodoLists;
-using MLS.Infrastructure.Persistance;
-using MLS.Infrastructure.Persistance.Repositories;
 using OLS.Persistance.Persistance.Repositories;
+using OLS.Domain.Contracts.TodoLists;
+using OLS.Domain.Contracts.TodoItems;
+using OLS.Persistance.Persistance;
+using Microsoft.EntityFrameworkCore;
 
 namespace OLS.Persistance;
 

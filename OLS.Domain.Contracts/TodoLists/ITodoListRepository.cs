@@ -1,5 +1,5 @@
 ﻿using AppFramework.Application;
-using MLS.Domain.Entities;
+using OLS.Domain.Entities;
 
 namespace OLS.Domain.Contracts.TodoLists;
 

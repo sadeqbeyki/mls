@@ -1,7 +1,6 @@
-﻿namespace MLS.WebUI.Models.TodoListModel
+﻿namespace MLS.WebUI.Models.TodoListModel;
+
+public class UpdateTodoListViewModel : CreateTodoListViewModel
 {
-    public class UpdateTodoListViewModel : CreateTodoListViewModel
-    {
-        public long? Id { get; set; }
-    }
+    public long? Id { get; set; }
 }

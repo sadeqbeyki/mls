@@ -1,9 +1,8 @@
 ﻿using AppFramework.Application;
 using AppFramework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using MLS.Application.TodoItems;
-using MLS.Domain.Entities;
-using MLS.Infrastructure.Persistance;
+using OLS.Domain.Contracts.TodoItems;
+using OLS.Domain.Entities;
 
 namespace OLS.Persistance.Persistance.Repositories
 {

@@ -1,4 +1,4 @@
-﻿using MLS.Domain.Entities;
+﻿using OLS.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace MLS.WebUI.Models.TodoItemModel;

@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using MLS.Application.TodoItems;
-using MLS.Application.TodoLists;
-using MLS.Domain.Entities;
+﻿using Microsoft.AspNetCore.Mvc;
 using MLS.WebUI.Models.TodoListModel;
+using OLS.Domain.Contracts.TodoItems;
+using OLS.Domain.Contracts.TodoLists;
+using OLS.Domain.Entities;
 
 namespace MLS.WebUI.Controllers;
 //[Authorize]

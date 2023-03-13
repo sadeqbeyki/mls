@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MLS.Application.TodoItems;
-using MLS.Application.TodoLists;
-using MLS.Domain.Entities;
+using OLS.Domain.Entities;
 using MLS.WebUI.Models.TodoItemModel;
+using OLS.Domain.Contracts.TodoLists;
+using OLS.Domain.Contracts.TodoItems;
 
-namespace MLS.WebUI.Controllers;
+namespace OLS.WebUI.Controllers;
 
 public class TodoItemController : Controller
 {

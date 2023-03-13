@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using MLS.Infrastructure;
+using OLS.Persistance;
 using MLS.WebUI.Models.Identity;
 
 var builder = WebApplication.CreateBuilder(args);

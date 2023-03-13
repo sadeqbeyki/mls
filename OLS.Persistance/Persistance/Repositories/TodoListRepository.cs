@@ -1,6 +1,6 @@
 ﻿using AppFramework.Infrastructure;
-using MLS.Application.TodoLists;
-using MLS.Domain.Entities;
+using OLS.Domain.Contracts.TodoLists;
+using OLS.Domain.Entities;
 
 namespace OLS.Persistance.Persistance.Repositories;
 
