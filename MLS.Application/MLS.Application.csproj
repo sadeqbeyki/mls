@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MLS.Domain\MLS.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Common\" />
   </ItemGroup>
 

@@ -1826,8 +1826,4 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MLS.Infrastructure\MLS.Infrastructure.csproj" />
-  </ItemGroup>
-
 </Project>
