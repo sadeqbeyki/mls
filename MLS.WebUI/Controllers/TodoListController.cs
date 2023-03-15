@@ -32,7 +32,7 @@ public class TodoListController : Controller
         return View();
     }
     [HttpPost]
-    public IActionResult Create(CreateTodoListViewModel model)
+    public IActionResult Create(CreateTodoListDto model)
     {
         string stringFileName = UploadFile(model);
         if (ModelState.IsValid)
@@ -50,7 +50,7 @@ public class TodoListController : Controller
 
     }
 
-    private string UploadFile(CreateTodoListViewModel model)
+    private string UploadFile(CreateTodoListDto model)
     {
         string fileName = string.Empty;
         if (model.ListImage != null)
@@ -98,7 +98,7 @@ public class TodoListController : Controller
         var todoList = _todoListRepository.Get(id);
         if (todoList != null)
         {
-            UpdateTodoListViewModel model = new()
+            UpdateTodoListDto model = new()
             {
                 Id = id,
                 Title = todoList.Title,
@@ -109,7 +109,7 @@ public class TodoListController : Controller
         return NotFound();
     }
     [HttpPost]
-    public IActionResult Update(long id, UpdateTodoListViewModel model)
+    public IActionResult Update(long id, UpdateTodoListDto model)
     {
         string stringFileName = UploadFile(model);
         if (ModelState.IsValid)

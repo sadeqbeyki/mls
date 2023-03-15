@@ -2,7 +2,7 @@
 
 namespace MLS.WebUI.Models.TodoListModel
 {
-    public class CreateTodoListViewModel
+    public class CreateTodoListDto
     {
         [Required]
         [StringLength(50, MinimumLength = 3)]
