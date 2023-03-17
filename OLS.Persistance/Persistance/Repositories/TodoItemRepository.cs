@@ -19,6 +19,20 @@ namespace OLS.Persistance.Persistance.Repositories
             _todoContext = todoContext;
         }
 
+        public OperationResult Add(TodoItem item)
+        {
+            var operation = new OperationResult();
+
+            TodoItem todoItem = new()
+            {
+                Title = item.Title,
+                Note = item.Note,
+                ListId = item.ListId,
+            };
+            Create(todoItem);
+            return operation.Succeeded();
+        }
+
         public OperationResult Edit(UpdateTodoItem todoItem)
         {
             var operation = new OperationResult();

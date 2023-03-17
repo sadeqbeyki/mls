@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MLS.WebUI.Models.TodoItemModel;
 
-public abstract class TodoItemViewModel
+public abstract class TodoItemDto
 {
     public long ListId { get; set; }
     [Required]
@@ -14,12 +14,12 @@ public abstract class TodoItemViewModel
     public string? Note { get; set; }
 }
 //لیست انتخاب شده که در نهایت ارسال میشود
-public class DisplayTodoItemViewModel : TodoItemViewModel
+public class DisplayTodoItemDto : TodoItemDto
 {
     public List<TodoList>? TodoLists { get; set; }
 }
 //در صفحه پست نمایش داده میشود
-public class ViewTodoItemViewModel : TodoItemViewModel
+public class ViewTodoItemDto : TodoItemDto
 {
     public long Id { get; set; }
     public string CreationDate { get; set; }

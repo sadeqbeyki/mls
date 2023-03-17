@@ -1,6 +1,6 @@
 ﻿namespace MLS.WebUI.Models.TodoItemModel
 {
-    public class UpdateTodoItemViewModel : DisplayTodoItemViewModel
+    public class UpdateTodoItemDto : DisplayTodoItemDto
     {
         public long Id { get; set; }
     }

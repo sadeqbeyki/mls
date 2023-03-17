@@ -28,14 +28,14 @@ public class TodoItemController : Controller
     #region Add TodoItem
     public IActionResult Add()
     {
-        DisplayTodoItemViewModel model = new()
+        DisplayTodoItemDto model = new()
         {
             TodoLists = _todoListRepository.GetAll().ToList()
         };
         return View(model);
     }
     [HttpPost]
-    public IActionResult Add(ViewTodoItemViewModel model)
+    public IActionResult Add(ViewTodoItemDto model)
     {
         if (ModelState.IsValid)
         {
@@ -49,7 +49,7 @@ public class TodoItemController : Controller
             return RedirectToAction("Index");
         }
 
-        DisplayTodoItemViewModel displayTodoItem = new()
+        DisplayTodoItemDto displayTodoItem = new()
         {
             Title = model?.Title,
             Note = model?.Note,
