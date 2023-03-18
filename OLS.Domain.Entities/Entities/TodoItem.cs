@@ -10,13 +10,6 @@ public class TodoItem : BaseEntity
     public long ListId { get; set; }
     public TodoList? ListName { get; set; }
 
-    public TodoItem(string? title, string? note, long listId, TodoList? listName)
-    {
-        Title = title;
-        Note = note;
-        ListId = listId;
-    }
-
     //public PriorityLevel Priority { get; set; }
     //public DateTime? Reminder { get; set; }
 

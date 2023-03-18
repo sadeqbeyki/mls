@@ -35,17 +35,11 @@ public class TodoItemController : Controller
         return View(model);
     }
     [HttpPost]
-    public IActionResult Add(ViewTodoItemDto model)
+    public IActionResult Add(TodoItemDto model)
     {
         if (ModelState.IsValid)
         {
-            TodoItem todoItem = new()
-            {
-                Title = model.Title,
-                Note = model.Note,
-                ListId = model.ListId,
-            };
-            _todoItemRepository.Create(todoItem);
+            _todoItemRepository.Add(model);
             return RedirectToAction("Index");
         }
 
