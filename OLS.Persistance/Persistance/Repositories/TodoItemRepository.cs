@@ -30,6 +30,7 @@ namespace OLS.Persistance.Persistance.Repositories
                 ListId = item.ListId,
             };
             Create(todoItem);
+            
             return operation.Succeeded();
         }
 
@@ -47,7 +48,8 @@ namespace OLS.Persistance.Persistance.Repositories
 
         public UpdateTodoItem GetDetails(long id)
         {
-            return _todoContext.TodoItems.Select(x => new UpdateTodoItem
+            return _todoContext.TodoItems
+                .Select(x => new UpdateTodoItem
             {
                 Id = x.Id,
                 Title = x.Title,
