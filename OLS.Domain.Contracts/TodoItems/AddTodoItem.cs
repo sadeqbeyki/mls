@@ -1,5 +1,5 @@
 ﻿
-using OLS.Domain.Entities;
+using OLS.Domain.Contracts.TodoLists;
 using System.ComponentModel.DataAnnotations;
 
 namespace OLS.Domain.Contracts.TodoItems;
@@ -13,5 +13,5 @@ public class AddTodoItem
     [StringLength(500, MinimumLength = 3)]
     public string Note { get; set; }
     public long ListId { get; set; }
-    public List<TodoList> TodoLists { get; set; }
+    public List<TodoListDto> TodoLists { get; set; }
 }
