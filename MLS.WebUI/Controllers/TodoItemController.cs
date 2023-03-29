@@ -4,6 +4,7 @@ using OLS.Domain.Entities;
 using MLS.WebUI.Models.TodoItemModel;
 using OLS.Domain.Contracts.TodoLists;
 using OLS.Domain.Contracts.TodoItems;
+using AutoMapper;
 
 namespace OLS.WebUI.Controllers;
 
@@ -11,12 +12,16 @@ public class TodoItemController : Controller
 {
     private readonly ITodoListRepository _todoListRepository;
     private readonly ITodoItemRepository _todoItemRepository;
+    private readonly IMapper _mapper;
 
 
-    public TodoItemController(ITodoItemRepository todoItemRepository, ITodoListRepository todoListRepository)
+    public TodoItemController(ITodoItemRepository todoItemRepository,
+        ITodoListRepository todoListRepository,
+        IMapper mapper)
     {
         _todoItemRepository = todoItemRepository;
         _todoListRepository = todoListRepository;
+        _mapper = mapper;
     }
 
     public IActionResult Index()
