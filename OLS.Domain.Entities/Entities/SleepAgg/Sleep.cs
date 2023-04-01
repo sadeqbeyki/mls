@@ -1,8 +1,9 @@
-﻿namespace OLS.Domain.Entities.SleepAgg;
+﻿using AppFramework.Domain;
 
-public class Sleep
+namespace OLS.Domain.Entities.Entities.SleepAgg;
+
+public class Sleep : BaseEntity
 {
-    public int Id { get; set; }
     public string DayName { get; set; } = string.Empty;
     public int Day { get; set; }
     public int Duration { get; set; }
