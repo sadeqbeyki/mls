@@ -1,5 +1,6 @@
 ﻿using AppFramework.Application;
 using AppFramework.Infrastructure;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using OLS.Domain.Contracts.TodoItems;
 using OLS.Domain.Entities;
@@ -13,6 +14,7 @@ namespace OLS.Persistance.Persistance.Repositories
         //}
 
         private readonly TodoContext _todoContext;
+        private readonly IMapper
 
         public TodoItemRepository(TodoContext todoContext) : base(todoContext)
         {
