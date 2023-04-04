@@ -14,16 +14,25 @@ namespace OLS.Persistance.Persistance.Repositories
         //}
 
         private readonly TodoContext _todoContext;
-        private readonly IMapper
+        private readonly IMapper _mapper;
 
-        public TodoItemRepository(TodoContext todoContext) : base(todoContext)
+        public TodoItemRepository(TodoContext todoContext, IMapper mapper) : base(todoContext)
         {
             _todoContext = todoContext;
+            _mapper = mapper;
         }
 
-        public OperationResult Add(TodoItem item)
+        public async Task<OperationResult> Add(AddTodoItem item)
         {
             var operation = new OperationResult();
+
+
+            var character = _mapper.Map<TodoItem>(item);
+            character.Id = _todoContext.TodoItems.Max(c => c.Id) + 1;
+            await _todoContext.TodoItems.AddAsync(character);
+            //operation.Data = _todoContext.TodoItems.Select(c => _mapper.Map<AddTodoItem>(c)).ToList();
+            //return serviceResponce;
+
 
             TodoItem todoItem = new()
             {
